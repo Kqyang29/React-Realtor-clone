@@ -47,7 +47,7 @@ function ForgotPassword() {
 							className="p-3 rounded-md border border-gray-300 w-full outline-none focus:border-blue-700 transition-all ease-in-out focus:border-2 focus:shadow-md"
 						/>
 
-						<div className="flex items-center justify-between text-lg lg:text-sm">
+						<div className="flex items-center justify-between text-xs sm:text:lg ">
 							<span>
 								Don't have an account?{" "}
 								<span className="text-red-500 cursor-pointer">

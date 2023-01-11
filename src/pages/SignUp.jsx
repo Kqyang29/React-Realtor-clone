@@ -102,7 +102,7 @@ function SignUp() {
 							)}
 						</div>
 
-						<div className="flex items-center justify-between text-lg lg:text-sm">
+						<div className="flex items-center justify-between text-xs sm:text:lg ">
 							<span>
 								Don't have an account?{" "}
 								<span className="text-red-500 cursor-pointer">
@@ -115,7 +115,9 @@ function SignUp() {
 							</span>
 						</div>
 
-						<button type='submit' className="bg-blue-600 text-white font-bold py-2 hover:bg-blue-500 rounded-md">
+						<button
+							type="submit"
+							className="bg-blue-600 text-white font-bold py-2 hover:bg-blue-500 rounded-md">
 							Sign Up
 						</button>
 
