@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
 
 function Header() {
   const navigate = useNavigate();
@@ -43,14 +44,25 @@ function Header() {
 						Offers
 					</button>
 
-					<button
-						onClick={() => navigate("/signin")}
-						className={`HeaderBtn ${
-							pathMatchRoute("/signin") &&
-							`underline underline-offset-8 decoration-red-400 decoration-2 text-black`
-						}`}>
-						Sign in
-					</button>
+					{auth.currentUser ? (
+						<button
+							onClick={() => navigate("/profile")}
+							className={`HeaderBtn ${
+								pathMatchRoute("/profile") &&
+								`underline underline-offset-8 decoration-red-400 decoration-2 text-black`
+							}`}>
+							Profile
+						</button>
+					) : (
+						<button
+							onClick={() => navigate("/signin")}
+							className={`HeaderBtn ${
+								pathMatchRoute("/signin") &&
+								`underline underline-offset-8 decoration-red-400 decoration-2 text-black`
+							}`}>
+							Sign in
+						</button>
+					)}
 				</div>
 			</div>
 		</header>

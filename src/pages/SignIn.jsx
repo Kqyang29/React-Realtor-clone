@@ -78,7 +78,7 @@ function SignIn() {
 							)}
 						</div>
 
-						<div className="flex items-center justify-between text-sm lg:text-sm">
+						<div className="flex items-center justify-between text-sm lg:text-lg">
 							<span>
 								Don't have an account?{" "}
 								<span className="text-red-500 cursor-pointer">
