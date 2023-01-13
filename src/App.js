@@ -10,10 +10,11 @@ import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from './components/PrivateRoute';
+import CreateList from './pages/CreateList';
 
 function App() {
   return (
-    <>
+    <div className='mt-10'>
       <BrowserRouter>
 
         <Header />
@@ -38,10 +39,19 @@ function App() {
 
           <Route path="/forgotpassword" element={<ForgotPassword />} />
 
+
+          <Route
+            path="/createlist"
+            element={<PrivateRoute />}
+          >
+            <Route path="/createlist" element={<CreateList />} />
+          </Route>
+
+
         </Routes>
       </BrowserRouter>
       <ToastContainer theme='colored' position='bottom-center' />
-    </>
+    </div>
   );
 }
 

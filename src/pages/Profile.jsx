@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { AiFillHome } from 'react-icons/ai';
 import {  useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
 import { toast } from 'react-toastify';
+import ListingItem from '../components/ListingItem';
 
 
 function Profile() {
@@ -12,6 +13,8 @@ function Profile() {
   const [name, setName] = useState("");
   const [edit, setEdit] = useState(false);
   const [user, setUser] = useState({});
+  const [listings, setListings] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => { 
 
@@ -28,7 +31,7 @@ function Profile() {
     }
    
     auth.currentUser&& getUser();
-  }, [auth]);
+  }, []);
 
 
   const handleSubmit = async() => {
@@ -55,14 +58,44 @@ function Profile() {
 
 
 
-  }
+	}
+	
+	// fetch listing
+	useEffect(() => {
+		const fetchListing = async () => {
 
+			setLoading(true);
+
+			const listingRef = collection(db, "realtor_listing");
+
+			const q = query(
+				listingRef,
+				where("userRef","==", auth.currentUser.uid),
+				orderBy("timestamp", "desc")
+			);
+
+			const querySnapshot = await getDocs(q);
+			let listings = [];
+			querySnapshot.forEach((doc) => {
+				return listings.push({
+					id: doc.id,
+					data: doc.data(),
+				});
+			});
+			setListings(listings);
+			setLoading(false);
+		};
+		fetchListing();
+
+	}, [auth.currentUser.uid]);
+
+	// console.log(listings[0].data)
 
   return (
 		<div className="max-w-6xl mx-auto flex flex-col">
 			{/* top */}
 			<div className="p-10 space-y-8 flex flex-col items-center">
-				<h1 className="text-4xl font-semibold mt-6">My Profile</h1>
+				<h1 className="text-4xl font-semibold ">My Profile</h1>
 
 				{/* body */}
 				<div className="max-w-xl w-full mx-auto">
@@ -109,7 +142,7 @@ function Profile() {
 							</span>
 						</div>
 						<button
-							type="submit"
+							onClick={()=>navigate("/createlist")}
 							className="bg-blue-600 text-white  py-3 hover:bg-blue-500 rounded-md flex items-center justify-center">
 							<AiFillHome className="h-7 w-7 bg-white rounded-full text-pink-400 mr-3" />
 							SELL OR RENT YOUR HOUSE
@@ -119,8 +152,23 @@ function Profile() {
 			</div>
 
 			{/* bottom */}
-			<div className='flex flex-col items-center'>
-				<h1 className="text-3xl mt-6">My listings</h1>
+			<div className='max-w-6xl px-10 md:px-3'>
+
+				<h1 className="text-3xl mt-6 text-center">
+					My listings
+				</h1>
+
+				{!loading && listings?.length > 0 && (
+					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-10 space-x-0 md:space-x-10'>
+						{listings.map((list) => (
+							<ListingItem
+								key={list.id}
+								id={list.id}
+								listing={list.data}
+							/>
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	);

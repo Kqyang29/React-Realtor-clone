@@ -10,4 +10,12 @@ body{
   .HeaderBtn{
     @apply text-sm text-gray-400  font-semibold
   }
+
+  .CreateListBtn{
+    @apply py-3 bg-white w-1/2 shadow-sm  rounded-md active:shadow-lg hover:shadow-md uppercase
+  }
+
+
+
+  
 }

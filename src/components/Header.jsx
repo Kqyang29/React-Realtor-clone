@@ -18,7 +18,7 @@ function Header() {
 				setPageState("Sign in");
 			}
 		});
-	}, [auth]);
+	}, []);
 	
    const pathMatchRoute = (route) => {
 			if (route === location.pathname) {
@@ -26,7 +26,7 @@ function Header() {
 			}
 		}
   return (
-		<header className="sticky top-0 z-40 shadow-sm border-b bg-white ">
+		<header className="fixed w-full top-0 z-40 shadow-sm border-b bg-white ">
 			<div className="flex items-center justify-between max-w-5xl mx-auto px-3 py-2">
 				{/* left */}
 				<div>

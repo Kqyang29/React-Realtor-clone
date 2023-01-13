@@ -21,7 +21,7 @@ function ForgotPassword() {
 
   return (
 		<section className="max-w-6xl mx-auto p-10">
-			<h1 className="text-3xl text-center font-semibold mt-6">
+			<h1 className="text-3xl text-center font-semibold">
 				Forgot Password
 			</h1>
 
