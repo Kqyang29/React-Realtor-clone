@@ -26,7 +26,7 @@ function ListingItem({ listing, id }) {
 
 
 	return (
-		<div className="w-full mb-10 shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-150 overflow-hidden flex flex-col justify-between bg-slate-50">
+		<div className="w-full mb-10 shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-150 overflow-hidden flex flex-col justify-between bg-slate-50 ">
 			{/* top */}
 			<div className="relative">
 				<img
@@ -70,11 +70,11 @@ function ListingItem({ listing, id }) {
 					{/* bed and bath */}
 					<div className="space-x-3">
 						{/* bed */}
-						<span>{listing?.bed > 1 ? `${listing?.bed} Beds` : "1 Bed"}</span>
+						<span>{listing?.beds > 1 ? `${listing?.beds} Beds` : "1 Bed"}</span>
 
 						{/* bath */}
 						<span>
-							{listing?.bath > 1 ? `${listing?.bath} Baths` : "1 Bath"}
+							{listing?.baths > 1 ? `${listing?.baths} Baths` : "1 Bath"}
 						</span>
 					</div>
 

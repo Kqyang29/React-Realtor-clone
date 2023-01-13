@@ -142,7 +142,7 @@ function Profile() {
 							</span>
 						</div>
 						<button
-							onClick={()=>navigate("/createlist")}
+							onClick={() => navigate("/createlist")}
 							className="bg-blue-600 text-white  py-3 hover:bg-blue-500 rounded-md flex items-center justify-center">
 							<AiFillHome className="h-7 w-7 bg-white rounded-full text-pink-400 mr-3" />
 							SELL OR RENT YOUR HOUSE
@@ -152,23 +152,18 @@ function Profile() {
 			</div>
 
 			{/* bottom */}
-			<div className='max-w-6xl px-10 md:px-3'>
+			<div className="max-w-6xl px-5">
+				<h1 className="text-3xl mt-6 text-center">My listings</h1>
 
-				<h1 className="text-3xl mt-6 text-center">
-					My listings
-				</h1>
+				
+					{!loading && listings?.length > 0 && (
+						<div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-5 gap-5 ">
+							{listings.map((list) => (
+								<ListingItem key={list.id} id={list.id} listing={list.data} />
+							))}
+						</div>
+					)}
 
-				{!loading && listings?.length > 0 && (
-					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-10 space-x-0 md:space-x-10'>
-						{listings.map((list) => (
-							<ListingItem
-								key={list.id}
-								id={list.id}
-								listing={list.data}
-							/>
-						))}
-					</div>
-				)}
 			</div>
 		</div>
 	);
