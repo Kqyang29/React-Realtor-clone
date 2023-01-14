@@ -11,6 +11,8 @@ import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from './components/PrivateRoute';
 import CreateList from './pages/CreateList';
+import EditListing from './pages/EditListing';
+import CategoryListing from './pages/CategoryListing';
 
 function App() {
   return (
@@ -44,8 +46,31 @@ function App() {
             path="/createlist"
             element={<PrivateRoute />}
           >
+
             <Route path="/createlist" element={<CreateList />} />
+
+
           </Route>
+
+          <Route
+            path="/editlisting/:id"
+            element={<PrivateRoute />}
+          >
+
+            <Route path="/editlisting/:id" element={<EditListing />} />
+
+
+          </Route>
+
+
+          <Route path="/category/:categoryName/:id" element={<CategoryListing />} />
+
+
+
+
+
+
+
 
 
         </Routes>
