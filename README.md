@@ -8,12 +8,13 @@ In the project directory, you can run:
 
 Features:
   - User can Sign up or sign in account by google or email & password
+  - User can recevie a email to change password if they forget their password
   - User can Edit their account profile
   - User can post their house for sale or rent
-  - User can see their house location base on the house address
+  - User can see their house location based on the house address
   - auth User can edit the house information
   - auth user can delete the post house
-  
+  - User can contact with the house owner based on email
   
 
 ### `npm start`
