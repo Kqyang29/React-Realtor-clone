@@ -1,12 +1,14 @@
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { Carousel } from 'react-responsive-carousel';
+import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import Spinner from './Spinner';
 
 function HomeSlider() {
   const [listing, setListing] = useState(null);
-   const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
 	// fetch listing
 	useEffect(() => {
@@ -54,7 +56,10 @@ function HomeSlider() {
 				showThumbs={false}
 				interval={5000}>
 				{listing?.map((list) => (
-					<div key={list.id} className="relative">
+					<div
+						onClick={() => navigate(`/category/${list?.data?.type}/${list.id}`)}
+						key={list.id}
+						className="relative">
 						<img
 							alt="banner_img"
 							src={list?.data?.images[0]}
@@ -66,8 +71,8 @@ function HomeSlider() {
 						</p>
 
 						<p className="absolute text-white bottom-5 left-5 bg-red-700 p-2 rounded-tr-3xl rounded-sm shadow-lg">
-							 ${list.data.discountedPrice ?? list.data.regularPrice}
-                {list.data.type === "rent" && " / month"}
+							${list.data.discountedPrice ?? list.data.regularPrice}
+							{list.data.type === "rent" && " / month"}
 						</p>
 					</div>
 				))}

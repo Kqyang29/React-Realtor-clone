@@ -102,7 +102,7 @@ function CategoryListing() {
 			)}
 
 			{/* bottom */}
-			<div className="max-w-6xl lg:mx-auto bg-white rounded-lg shadow-lg p-6 flex flex-col lg:flex-row items-center  lg:space-x-5 m-5">
+			<div className="max-w-6xl lg:mx-auto bg-white rounded-lg shadow-lg p-6 flex flex-col lg:flex-row   lg:space-x-5 m-5">
 				{/* house*/}
 				<div className="w-full space-y-5">
 					<p className="mt-4 text-2xl font-bold text-blue-900">
