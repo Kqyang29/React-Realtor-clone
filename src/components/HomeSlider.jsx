@@ -59,7 +59,7 @@ function HomeSlider() {
 					<div
 						onClick={() => navigate(`/category/${list?.data?.type}/${list.id}`)}
 						key={list.id}
-						className="relative">
+						className="relative cursor-pointer">
 						<img
 							alt="banner_img"
 							src={list?.data?.images[0]}

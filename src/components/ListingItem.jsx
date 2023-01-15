@@ -14,9 +14,10 @@ function ListingItem({ listing, id, handleDelete, handleEdit }) {
 	return (
 		<div className="w-full mb-10 shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-150 overflow-hidden flex flex-col justify-between bg-slate-50 ">
 			{/* top */}
-			<div className="relative">
+			<div
+				onClick={() => navigate(`/category/${listing?.type}/${id}`)}
+				className="relative cursor-pointer">
 				<img
-					onClick={() => navigate(`/category/${listing?.type}/${id}`)}
 					src={listing?.images[0]}
 					alt="listing_img"
 					className="w-full h-[170px] cursor-pointer object-cover hover:scale-105 transition-scale duration-200 ease-in "
@@ -28,7 +29,7 @@ function ListingItem({ listing, id, handleDelete, handleEdit }) {
 			</div>
 
 			{/* bottom */}
-			<div className=" flex flex-col items-start space-y-5 px-5">
+			<div className=" flex flex-col items-start space-y-5 px-5" >
 				<div className="flex items-center pt-4 w-full">
 					<div>
 						<MdLocationOn className="text-green-600 h-6 w-6" />
