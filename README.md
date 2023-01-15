@@ -15,6 +15,7 @@ Features:
   - auth User can edit the house information
   - auth user can delete the post house
   - User can contact with the house owner based on email
+  - Fully Responsive Pages
   
 
 ### `npm start`
