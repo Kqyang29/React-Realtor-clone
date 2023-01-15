@@ -6,6 +6,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+Features:
+  - User can Sign up or sign in account by google or email & password
+  - User can Edit their account profile
+  - User can post their house for sale or rent
+  - User can see their house location base on the house address
+  - auth User can edit the house information
+  - auth user can delete the post house
+  
+  
+
 ### `npm start`
 
 Runs the app in the development mode.\
