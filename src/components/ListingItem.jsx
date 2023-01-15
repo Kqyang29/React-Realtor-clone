@@ -8,22 +8,8 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { toast } from 'react-toastify';
 
-function ListingItem({ listing, id }) {
+function ListingItem({ listing, id, handleDelete, handleEdit }) {
 	const navigate = useNavigate();
-  const handleEdit = () => {
-     navigate(`/editlisting/${id}`);
-  };
-
-  const handleDelete = async() => {
-    if (window.confirm("Are you sure you want to delete?")) {
-      await deleteDoc(doc(db, "realtor_listing", id));
-      
-       toast.success("Successfully deleted the listing");
-    }
-  };
-
-	
-
 
 	return (
 		<div className="w-full mb-10 shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-150 overflow-hidden flex flex-col justify-between bg-slate-50 ">
@@ -66,23 +52,35 @@ function ListingItem({ listing, id }) {
 					{listing?.type === "rent" && " / Month"}
 				</p>
 
-				<div className="flex justify-between items-center w-full text-md pb-3">
+				<div className="flex items-center w-full text-md pb-3">
 					{/* bed and bath */}
-					<div className="space-x-3">
+					<div className="space-x-2 flex-grow">
 						{/* bed */}
-						<span>{listing?.beds > 1 ? `${listing?.beds} Beds` : "1 Bed"}</span>
+						<span className="text-sm font-semibold">
+							{listing?.beds > 1 ? `${listing?.beds} Beds` : "1 Bed"}
+						</span>
 
 						{/* bath */}
-						<span>
+						<span className="text-sm font-semibold">
 							{listing?.baths > 1 ? `${listing?.baths} Baths` : "1 Bath"}
 						</span>
 					</div>
 
 					{/* icons */}
 					<div className="flex items-center space-x-3 font-bold">
-						<MdEdit onClick={handleEdit} className="text-gray-700" />
+						{handleEdit && (
+							<MdEdit
+								onClick={() => handleEdit(id)}
+								className="text-gray-700"
+							/>
+						)}
 
-						<FaTrash onClick={handleDelete} className="text-red-600" />
+						{handleDelete && (
+							<FaTrash
+								onClick={() => handleDelete(id)}
+								className="text-red-600"
+							/>
+						)}
 					</div>
 				</div>
 			</div>

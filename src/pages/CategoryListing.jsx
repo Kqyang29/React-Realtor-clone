@@ -72,7 +72,7 @@ function CategoryListing() {
 				showIndicators={false}
 				showThumbs={false}
 				interval={5000}>
-				{listing?.images.map((image) => (
+				{listing?.images?.map((image) => (
 					<div key={image} className="relative">
 						<img
 							alt="banner_img"

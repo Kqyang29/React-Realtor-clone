@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { AiFillHome } from 'react-icons/ai';
 import {  useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
-import { collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
 import { toast } from 'react-toastify';
 import ListingItem from '../components/ListingItem';
 
@@ -91,6 +91,18 @@ function Profile() {
 
 	// console.log(listings[0].data)
 
+		const handleEdit = (listingId) => {
+			navigate(`/editlisting/${listingId}`);
+		};
+
+		const handleDelete = async (listingId) => {
+			if (window.confirm("Are you sure you want to delete?")) {
+				await deleteDoc(doc(db, "realtor_listing", listingId));
+
+				toast.success("Successfully deleted the listing");
+			}
+		};
+
   return (
 		<div className="max-w-6xl mx-auto flex flex-col">
 			{/* top */}
@@ -159,7 +171,7 @@ function Profile() {
 					{!loading && listings?.length > 0 && (
 						<div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-5 gap-5 ">
 							{listings.map((list) => (
-								<ListingItem key={list.id} id={list.id} listing={list.data} />
+								<ListingItem key={list.id} id={list.id} listing={list.data} handleDelete={handleDelete} handleEdit={handleEdit} />
 							))}
 						</div>
 					)}
