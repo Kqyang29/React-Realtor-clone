@@ -13,6 +13,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CreateList from './pages/CreateList';
 import EditListing from './pages/EditListing';
 import CategoryListing from './pages/CategoryListing';
+import CatergoryNameListing from './pages/CatergoryNameListing';
 
 function App() {
   return (
@@ -64,6 +65,8 @@ function App() {
 
 
           <Route path="/category/:categoryName/:id" element={<CategoryListing />} />
+
+          <Route path="/category/:categoryName" element={<CatergoryNameListing />} />
 
 
 
